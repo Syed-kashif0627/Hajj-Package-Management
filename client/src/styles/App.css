@@ -1,0 +1,43 @@
+body {
+    background-color: white;
+    color: #243b7f;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #243b7f;
+}
+
+a {
+    color: #243b7f;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #c5b37b;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer {
+    background-color: #c5b37b;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

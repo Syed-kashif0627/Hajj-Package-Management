@@ -1,0 +1,24 @@
+.home-container {
+    background-color: white;
+    color: #243b7f;
+    padding: 20px;
+    text-align: center;
+}
+
+.features {
+    margin-top: 20px;
+}
+
+.features h2 {
+    color: #c5b37b;
+}
+
+.features ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.features li {
+    margin: 10px 0;
+    color: #243b7f;
+}
