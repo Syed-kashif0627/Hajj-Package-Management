@@ -15,24 +15,6 @@ const path = require('path');
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-const allowedOrigins = [
-  'https://hajj-package-management.onrender.com', // Replace with your Netlify URL
-  'http://localhost:3000' // For local development
-];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true // If you need to send cookies
-};
-// Enable CORS  
-app.use(cors(corsOptions));
-
 // Enhanced MongoDB connection with error handling
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -48,6 +30,24 @@ mongoose.connect(process.env.MONGO_URI, {
 mongoose.connection.on('error', (err) => {
     console.error('MongoDB connection error:', err);
 });
+
+const allowedOrigins = [
+  'https://gregarious-chaja-42a3c3.netlify.app', // Replace with your Netlify URL
+  'http://localhost:3000' // For local development
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true // If you need to send cookies
+};
+// Enable CORS  
+app.use(cors(corsOptions));
+
 
 // Middleware
 // app.use(cors({
