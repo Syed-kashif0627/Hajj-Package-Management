@@ -11,6 +11,7 @@ const linkedPilgrimRoutes = require('./routes/linkedPilgrimRoutes');
 const dashboardRoutes = require('./routes/dashboard');
 const passportVisaRoutes = require('./routes/passportVisaRoutes');
 const path = require('path');
+require('dotenv').config();
 
 // Initialize Express app
 const app = express();
