@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
-  'https://682b12aaa798ac0619e75877--gregarious-chaja-42a3c3.netlify.app/', // Replace with your Netlify URL
+  'https://gregarious-chaja-42a3c3.netlify.app/', // Replace with your Netlify URL
   'http://localhost:3000' // For local development
 ];
 const corsOptions = {
