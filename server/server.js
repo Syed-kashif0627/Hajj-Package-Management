@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
-  'https://gregarious-chaja-42a3c3.netlify.app/', // Replace with your Netlify URL
+  'https://hajj-package-management.onrender.com', // Replace with your Netlify URL
   'http://localhost:3000' // For local development
 ];
 const corsOptions = {
