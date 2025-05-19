@@ -48,7 +48,7 @@ const Guides = () => {
             setError(null);
 
             const token = localStorage.getItem('token');
-            const response = await axios.get('/api/guides', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/guides`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -155,7 +155,7 @@ const Guides = () => {
             console.log('Using token:', token ? 'Token exists' : 'No token found');
             
             console.log('Making API request to /api/guides');
-            const response = await axios.post('/api/guides', formData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/guides`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`
@@ -196,7 +196,7 @@ const Guides = () => {
         if (window.confirm('Are you sure you want to delete this guide?')) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`/api/guides/${id}`, {
+                await axios.delete(`${process.env.REACT_APP_API_URL}/api/guides/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 
@@ -293,7 +293,7 @@ const Guides = () => {
             console.log('Form data keys:', [...formData.keys()]);
             
             const token = localStorage.getItem('token');
-            const response = await axios.put(`/api/guides/${editingGuide._id}`, formData, {
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/guides/${editingGuide._id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`
@@ -390,7 +390,7 @@ const Guides = () => {
         if (window.confirm('Are you sure you want to delete this passport document?')) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`/api/guides/${guideId}/passport`, {
+                await axios.delete(`${process.env.REACT_APP_API_URL}/api/guides/${guideId}/passport`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 

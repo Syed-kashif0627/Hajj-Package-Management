@@ -134,7 +134,7 @@ const Hotels = () => {
     useEffect(() => {
         const fetchHotels = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/hotels');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/hotels`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch hotels');
                 }
@@ -212,7 +212,7 @@ const Hotels = () => {
                 });
 
                 // Send to server
-                const response = await fetch('http://localhost:5000/api/hotel-pilgrims/import', {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/hotel-pilgrims/import`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -252,7 +252,7 @@ const Hotels = () => {
             setSelectedHotel(hotelName);
             
             const response = await fetch(
-                `http://localhost:5000/api/hotel-pilgrims/hotel/${encodeURIComponent(hotelName)}?page=${currentPage}&limit=50`
+                `${process.env.REACT_APP_API_URL}/api/hotel-pilgrims/hotel/${encodeURIComponent(hotelName)}?page=${currentPage}&limit=50`
             );
             
             if (!response.ok) throw new Error('Failed to fetch pilgrims');
@@ -276,7 +276,7 @@ const Hotels = () => {
             setCurrentPage(newPage);
             
             const response = await fetch(
-                `http://localhost:5000/api/hotel-pilgrims/hotel/${encodeURIComponent(selectedHotel)}?page=${newPage}&limit=50`
+                `${process.env.REACT_APP_API_URL}/api/hotel-pilgrims/hotel/${encodeURIComponent(selectedHotel)}?page=${newPage}&limit=50`
             );
             
             if (!response.ok) throw new Error('Failed to fetch pilgrims');
@@ -361,7 +361,7 @@ const Hotels = () => {
     // Add a function to fetch pilgrims data when needed
     const fetchPilgrimsForHotel = async (hotelName) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/hotel-pilgrims/hotel/${encodeURIComponent(hotelName)}`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/hotel-pilgrims/hotel/${encodeURIComponent(hotelName)}`);
             if (!response.ok) throw new Error('Failed to fetch pilgrims');
             const data = await response.json();
             return data;

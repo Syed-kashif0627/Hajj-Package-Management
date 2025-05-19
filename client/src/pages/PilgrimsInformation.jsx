@@ -325,7 +325,7 @@ const PilgrimsInformation = () => {
                 }));
 
                 // Save to backend (MongoDB)
-                const importRes = await fetch('http://localhost:5000/api/pilgrims/import', {
+                const importRes = await fetch(`${process.env.REACT_APP_API_URL}/api/pilgrims/import`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -340,7 +340,7 @@ const PilgrimsInformation = () => {
                 }
 
                 // Fetch updated pilgrims from backend
-                const pilgrimsResponse = await fetch('http://localhost:5000/api/pilgrims');
+                const pilgrimsResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/pilgrims`);
                 if (!pilgrimsResponse.ok) {
                     alert('Failed to fetch pilgrims after import');
                     setLoading(false);
@@ -377,7 +377,7 @@ const PilgrimsInformation = () => {
     useEffect(() => {
         const fetchPilgrims = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/pilgrims');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/pilgrims`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch pilgrims');
                 }
@@ -404,7 +404,7 @@ const PilgrimsInformation = () => {
         e.stopPropagation(); // Prevent row click
         if (window.confirm('Are you sure you want to delete this pilgrim?')) {
             try {
-                const response = await fetch(`http://localhost:5000/api/pilgrims/${pilgrimId}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/pilgrims/${pilgrimId}`, {
                     method: 'DELETE',
                 });
 

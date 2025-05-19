@@ -61,7 +61,7 @@ const PassportVisa = () => {
     setAlert({ show: false, variant: '', message: '' }); // Reset alert on new fetch
     
     try {
-      const response = await axios.get('/api/passport-visa');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/passport-visa`);
       
       if (response.data.success) {
         const { documents, stats } = response.data;
@@ -161,7 +161,7 @@ const PassportVisa = () => {
     formData.append('file', importFile);
     
     try {
-      const response = await axios.post('/api/passport-visa/import', formData, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/passport-visa/import`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -200,7 +200,7 @@ const PassportVisa = () => {
       try {
         setAlert({ show: false }); // Reset any alerts
         
-        const response = await axios.delete(`/api/passport-visa/${id}`, {
+        const response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/passport-visa/${id}`, {
           data: {
             passportNumber: passportNumber,
             documentType: documentType
@@ -240,7 +240,7 @@ const PassportVisa = () => {
     
     try {
       console.log('Sending delete all request...');
-      const response = await axios.delete('/api/passport-visa/all');
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/passport-visa/all`);
       console.log('Delete all response:', response.data);
       
       if (response.data.success) {
@@ -276,7 +276,7 @@ const PassportVisa = () => {
     
     try {
       // Use axios to get the file as a blob
-      const response = await axios.get('/api/passport-visa/export', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/passport-visa/export`, {
         responseType: 'blob'
       });
       
@@ -378,7 +378,7 @@ const PassportVisa = () => {
     });
     
     try {
-      const response = await axios.post('/api/passport-visa/upload-document', formData, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/passport-visa/upload-document`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
@@ -446,7 +446,7 @@ const PassportVisa = () => {
     
     try {
       // Request the ZIP file from the server
-      const response = await axios.get('/api/passport-visa/download-zip', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/passport-visa/download-zip`, {
         responseType: 'blob'
       });
       
@@ -492,7 +492,7 @@ const PassportVisa = () => {
       setDocumentError(null);
       
       // Create the document URL
-      const url = `http://localhost:5000/api/passport-visa/direct-pdf/${pilgrim.passportNumber}`;
+      const url = `${process.env.REACT_APP_API_URL}/api/passport-visa/direct-pdf/${pilgrim.passportNumber}`;
       setDocumentUrl(url);
       
       // Set up modal with document metadata
@@ -1245,7 +1245,7 @@ const PassportVisa = () => {
                           variant="primary" 
                           className="w-100 d-flex align-items-center justify-content-center gap-2 mb-3"
                           onClick={() => {
-                            const url = `http://localhost:5000/api/passport-visa/direct-pdf/${viewingDocument.pilgrim.passportNumber}`;
+                            const url = `${process.env.REACT_APP_API_URL}/api/passport-visa/direct-pdf/${viewingDocument.pilgrim.passportNumber}`;
                             window.open(url, '_blank', 'noopener');
                           }}
                         >

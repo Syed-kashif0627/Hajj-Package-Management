@@ -19,12 +19,12 @@ useEffect(() => {
     try {
       // Check the actual URL paths in your server code
       // Make sure this matches your routes in server/app.js or server.js
-      const summaryResponse = await axios.get('http://localhost:5000/api/dashboard/summary', {
+      const summaryResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/dashboard/summary`, {
         params: { _t: new Date().getTime() }
       });
       
       // Update this URL to match exactly how you've registered the route in your server
-      const guidesResponse = await axios.get('http://localhost:5000/api/guides/recent', {
+      const guidesResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/guides/recent`, {
         params: { limit: 5, _t: new Date().getTime() }
       });
       

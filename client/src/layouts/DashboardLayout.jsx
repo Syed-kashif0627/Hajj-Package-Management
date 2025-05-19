@@ -30,7 +30,7 @@ const DashboardLayout = ({ children }) => {
                 }
                 
                 // Fetch the user profile
-                const response = await axios.get('http://localhost:5000/api/auth/profile', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/profile`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

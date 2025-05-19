@@ -71,7 +71,7 @@ const MovementSchedule = () => {
         const fetchData = async () => {
             try {
                 // Fetch movements from the database
-                const movementsResponse = await fetch('http://localhost:5000/api/movements');
+                const movementsResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/movements`);
                 if (!movementsResponse.ok) {
                     throw new Error('Failed to fetch movements');
                 }
@@ -266,7 +266,7 @@ const MovementSchedule = () => {
 
                 // Save to MongoDB
                 try {
-                    const response = await fetch('http://localhost:5000/api/movements/batch', {
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/movements/batch`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

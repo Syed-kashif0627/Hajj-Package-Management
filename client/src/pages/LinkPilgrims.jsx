@@ -61,7 +61,7 @@ const LinkPilgrims = () => {
         const fetchGuides = async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch('http://localhost:5000/api/guides');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/guides`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch guides');
                 }
@@ -93,7 +93,7 @@ const LinkPilgrims = () => {
         const fetchPilgrims = async () => {
             try {
                 // Update the URL to match the new route
-                const response = await fetch('http://localhost:5000/api/linked-pilgrims/linked');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/linked-pilgrims/linked`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch linked pilgrims');
                 }
@@ -173,7 +173,7 @@ const LinkPilgrims = () => {
         try {
             console.log('Sending data:', importedData); // Debug log
 
-            const response = await fetch('http://localhost:5000/api/linked-pilgrims/bulk-link', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/linked-pilgrims/bulk-link`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

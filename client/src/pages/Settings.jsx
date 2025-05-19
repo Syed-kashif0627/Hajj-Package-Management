@@ -32,7 +32,7 @@ const Settings = () => {
       }
       
       // Fetch the user profile - only retrieve email
-      const response = await axios.get('http://localhost:5000/api/auth/profile', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/profile`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -101,7 +101,7 @@ const Settings = () => {
       }
       
       // Call the actual API endpoint to change password
-      await axios.post('http://localhost:5000/api/auth/change-password', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/change-password`, {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword
       }, {
