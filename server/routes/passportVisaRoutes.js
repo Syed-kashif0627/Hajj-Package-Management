@@ -578,37 +578,6 @@ router.post('/import', upload.single('file'), async (req, res) => {
         // Insert into the database
         const insertedDocs = await PassportVisa.insertMany(processedData);
         
-        // Also update or insert pilgrims if the model exists and they don't already exist
-        if (Pilgrim) {
-            const pilgrimsToUpdate = [...new Map(processedData.map(item => 
-                [item.passportNumber, { 
-                    name: item.name,
-                    passportNumber: item.passportNumber,
-                    country: item.country,
-                    guide: item.guide,
-                    organizer: item.organizer
-                }]
-            )).values()].filter(p => p.passportNumber); // Filter out any records without passport numbers
-            
-            // Use bulkWrite for more efficient operation
-            if (pilgrimsToUpdate.length > 0) {
-                try {
-                    const pilgrimOps = pilgrimsToUpdate.map(pilgrim => ({
-                        updateOne: {
-                            filter: { passportNumber: pilgrim.passportNumber },
-                            update: { $set: pilgrim },
-                            upsert: true
-                        }
-                    }));
-                    
-                    await Pilgrim.bulkWrite(pilgrimOps);
-                } catch (err) {
-                    console.warn("Unable to update pilgrim records:", err.message);
-                    // Continue execution - we don't want the import to fail if pilgrim updates fail
-                }
-            }
-        }
-        
         // Delete the uploaded file
         fs.unlinkSync(req.file.path);
         

@@ -13,6 +13,8 @@ echo "# Dependencies
 .env.development.local
 .env.test.local
 .env.production.local
+.env.development
+.env.production
 /server/.env
 
 # Logs

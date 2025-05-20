@@ -16,18 +16,18 @@ router.post('/signup', async (req, res) => {
             return res.status(400).json({ message: 'Please enter a valid email address' });
         }
         
-        // Check if email domain exists
-        const domain = email.split('@')[1];
-        try {
-            const { promises: dns } = require('dns');
-            const mxRecords = await dns.resolveMx(domain).catch(() => []);
-            if (mxRecords.length === 0) {
-                return res.status(400).json({ message: 'Please enter a valid email with an existing domain' });
-            }
-        } catch (dnsError) {
-            console.error('DNS check error:', dnsError);
-            // Continue with registration if DNS check fails (optional)
-        }
+        // // Check if email domain exists
+        // const domain = email.split('@')[1];
+        // try {
+        //     const { promises: dns } = require('dns');
+        //     const mxRecords = await dns.resolveMx(domain).catch(() => []);
+        //     if (mxRecords.length === 0) {
+        //         return res.status(400).json({ message: 'Please enter a valid email with an existing domain' });
+        //     }
+        // } catch (dnsError) {
+        //     console.error('DNS check error:', dnsError);
+        //     // Continue with registration if DNS check fails (optional)
+        // }
         
         // Check if user already exists
         const existingUser = await User.findOne({ email });
